@@ -3,59 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Grünkreis Cannabis Club</title>
+    <title>WrenchVille Garage Simulator</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero">
       <nav class="nav">
         <div class="brand">
-          <span class="logo">GK</span>
+          <span class="logo">WV</span>
           <div>
-            <p class="brand-title">Grünkreis</p>
-            <p class="brand-subtitle">Cannabis Club</p>
+            <p class="brand-title">WrenchVille</p>
+            <p class="brand-subtitle">Cartoon Auto-Mechaniker Simulator</p>
           </div>
         </div>
         <div class="nav-links">
-          <a href="#club">Der Club</a>
-          <a href="#values">Unsere Werte</a>
-          <a href="#members">Mitgliedschaft</a>
-          <a href="#kontakt" class="button">Kontakt</a>
+          <a href="#minigame">Mini-Game</a>
+          <a href="#gameplay">Gameplay</a>
+          <a href="#garage">Werkstatt</a>
+          <a href="#upgrades">Upgrades</a>
+          <a href="#mission" class="button">Jetzt starten</a>
         </div>
       </nav>
       <div class="hero-content">
         <div class="hero-text">
-          <p class="pill">Zukunftsorientiert & verantwortungsvoll</p>
-          <h1>Gemeinschaft, Qualität und Transparenz für Cannabis-Enthusiasten.</h1>
+          <p class="pill">Spaßig · Bunt · PC-Simulator</p>
+          <h1>Schraube dich durch den ultimativen Cartoon-Mechanikeralltag.</h1>
           <p>
-            Der Grünkreis Cannabis Club bietet einen sicheren, legalen und gemeinschaftlichen Rahmen
-            für den nachhaltigen Anbau und die Ausgabe von Cannabis in Deutschland.
+            In WrenchVille führst du eine quietschbunte Werkstatt, reparierst verrückte Fahrzeuge und
+            baust dir Schritt für Schritt dein Traum-Garage-Imperium auf.
           </p>
           <div class="hero-actions">
-            <a href="#members" class="button primary">Mitglied werden</a>
-            <a href="#values" class="button ghost">Mehr erfahren</a>
+            <a href="#minigame" class="button primary">Mini-Game starten</a>
+            <a href="#gameplay" class="button ghost">Gameplay ansehen</a>
+          </div>
+          <div class="hero-badges">
+            <span>Einsteigerfreundlich</span>
+            <span>Story-Aufträge</span>
+            <span>Workshop-Upgrade</span>
           </div>
         </div>
         <div class="hero-card">
-          <h2>Highlights</h2>
-          <ul>
-            <li>Regelmäßige Info-Abende & Workshops</li>
-            <li>Qualitätsgesicherte Sortenvielfalt</li>
-            <li>Transparente Club-Strukturen</li>
-            <li>Nachhaltiger Indoor-Anbau</li>
-          </ul>
-          <div class="stats">
+          <div class="hero-illustration">
+            <div class="garage">
+              <div class="roof"></div>
+              <div class="door"></div>
+              <div class="tool-shelf">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div class="car">
+              <div class="car-top"></div>
+              <div class="car-body"></div>
+              <div class="wheel wheel-left"></div>
+              <div class="wheel wheel-right"></div>
+            </div>
+            <div class="speech-bubble">"Ölwechsel + Turbo!"</div>
+          </div>
+          <div class="hero-stats">
             <div>
-              <strong>350+</strong>
-              <span>Mitglieder</span>
+              <strong>150+</strong>
+              <span>Missionen</span>
             </div>
             <div>
-              <strong>12</strong>
-              <span>Sorten pro Saison</span>
+              <strong>45</strong>
+              <span>Fahrzeugtypen</span>
             </div>
             <div>
-              <strong>24/7</strong>
-              <span>Community Support</span>
+              <strong>4</strong>
+              <span>Werkstatt-Teams</span>
             </div>
           </div>
         </div>
@@ -63,148 +80,316 @@
     </header>
 
     <main>
-      <section id="club" class="section">
+      <section id="minigame" class="section alt">
         <div class="section-header">
-          <h2>Ein Club mit Verantwortung</h2>
+          <h2>Web-Mini-Game: Schnellreparatur</h2>
           <p>
-            Unser Cannabis Club steht für eine neue Kultur: sicher, fair und offen für alle, die Cannabis
-            verantwortungsvoll genießen möchten.
+            Klick die richtige Stelle am Auto, bevor die Zeit abläuft. Schaffst du die höchste
+            Reparaturserie?
+          </p>
+        </div>
+        <div class="minigame">
+          <div class="minigame-panel">
+            <div class="minigame-header">
+              <div>
+                <h3>Auftrag</h3>
+                <p id="taskText">Drücke „Start“, um einen Auftrag zu bekommen.</p>
+              </div>
+              <div class="minigame-controls">
+                <button id="startGame" class="button primary" type="button">Start</button>
+                <button id="resetGame" class="button ghost" type="button">Reset</button>
+              </div>
+            </div>
+            <div class="minigame-stats">
+              <div>
+                <span>Zeit</span>
+                <strong id="timeLeft">45</strong>
+              </div>
+              <div>
+                <span>Reparaturen</span>
+                <strong id="score">0</strong>
+              </div>
+              <div>
+                <span>Serie</span>
+                <strong id="streak">0</strong>
+              </div>
+            </div>
+            <div class="minigame-hint" id="hintText">Bereit für den ersten Auftrag?</div>
+          </div>
+          <div class="minigame-stage" aria-label="Cartoon-Auto für das Mini-Game">
+            <div class="stage-car">
+              <div class="stage-car-top"></div>
+              <div class="stage-car-body"></div>
+              <button class="stage-part part-hood" data-part="Motor" type="button">
+                <span>Motor</span>
+              </button>
+              <button class="stage-part part-wheel" data-part="Reifen" type="button">
+                <span>Reifen</span>
+              </button>
+              <button class="stage-part part-light" data-part="Scheinwerfer" type="button">
+                <span>Licht</span>
+              </button>
+              <button class="stage-part part-door" data-part="Tür" type="button">
+                <span>Tür</span>
+              </button>
+              <div class="stage-wheel left"></div>
+              <div class="stage-wheel right"></div>
+            </div>
+            <div class="stage-decor">
+              <div class="toolbox"></div>
+              <div class="oil-can"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gameplay" class="section">
+        <div class="section-header">
+          <h2>Gameplay-Loop: Diagnostizieren, Reparieren, Feiern</h2>
+          <p>
+            Nimm verrückte Aufträge an, finde die Fehler in lustigen Mini-Games und liefere die
+            Fahrzeuge geschniegelt an ihre Besitzer zurück.
           </p>
         </div>
         <div class="cards">
           <article>
-            <h3>Rechtskonform & sicher</h3>
+            <h3>1. Diagnose</h3>
             <p>
-              Wir arbeiten nach den aktuellen gesetzlichen Vorgaben und dokumentieren jeden Schritt im
-              Anbau- und Ausgabeverfahren.
+              Scanne den Motor mit dem Cartoon-Scanner, höre auf die Geräusche und sammle Hinweise.
             </p>
           </article>
           <article>
-            <h3>Gemeinschaft im Fokus</h3>
+            <h3>2. Reparatur</h3>
             <p>
-              Von Grow-Workshops bis Community-Abenden: Wir fördern Austausch und Bildung rund um Cannabis.
+              Tausche Teile aus, wuchte Reifen aus und tune den Sound mit bunten Werkstatt-Tools.
             </p>
           </article>
           <article>
-            <h3>Qualitätsversprechen</h3>
+            <h3>3. Testfahrt</h3>
             <p>
-              Jede Charge wird nach klaren Standards geprüft, damit unsere Mitglieder maximale Transparenz
-              erhalten.
+              Absolviere witzige Prüfungen auf dem Hof und erhalte Bonussterne für perfekte Arbeit.
             </p>
           </article>
         </div>
       </section>
 
-      <section id="values" class="section alt">
-        <div class="values-grid">
+      <section id="garage" class="section alt">
+        <div class="garage-grid">
           <div>
-            <h2>Unsere Werte</h2>
+            <h2>Deine Werkstatt in Aktion</h2>
             <p>
-              Nachhaltigkeit, Vielfalt und Bildung sind der Kern unseres Clubs. Wir setzen auf ökologische
-              Prozesse und fördern die Entstigmatisierung durch Aufklärung.
+              Manage Bestellungen, koordiniere dein Team und priorisiere die coolsten Aufträge. Die
+              Werkstattansicht zeigt dir alles auf einen Blick.
             </p>
-            <ul class="value-list">
-              <li><strong>Nachhaltigkeit:</strong> Energieeffiziente Anbausysteme & lokale Ressourcen.</li>
-              <li><strong>Vielfalt:</strong> Breites Sortiment von Indica bis Sativa.</li>
-              <li><strong>Bildung:</strong> Seminare zu Konsumkompetenz und Wirkung.</li>
+            <ul class="checklist">
+              <li>Live-Auftragsliste mit Dringlichkeit</li>
+              <li>Bauteil-Lager mit bunten Icons</li>
+              <li>Wetterwechsel beeinflusst den Kundenandrang</li>
             </ul>
           </div>
-          <div class="value-card">
-            <h3>Dein sicherer Raum</h3>
-            <p>
-              Wir schaffen ein Umfeld, in dem Konsumkompetenz, Gesundheit und Wohlbefinden im Vordergrund
-              stehen.
-            </p>
-            <div class="highlight">
-              <span>Monatliche Community-Events</span>
-              <strong>+ Beratung vor Ort</strong>
+          <div class="garage-panel">
+            <div class="panel-header">
+              <h3>Aufträge des Tages</h3>
+              <span class="status-pill">3 aktiv</span>
+            </div>
+            <div class="mission">
+              <div>
+                <h4>Pizza-Racer</h4>
+                <p>Quietschende Bremsen beheben</p>
+              </div>
+              <span class="badge urgent">Eilig</span>
+            </div>
+            <div class="mission">
+              <div>
+                <h4>Retro-Van</h4>
+                <p>Ölfilter + Lackpflege</p>
+              </div>
+              <span class="badge">Standard</span>
+            </div>
+            <div class="mission">
+              <div>
+                <h4>Turbo-Kart</h4>
+                <p>Boost-Kit einbauen</p>
+              </div>
+              <span class="badge fun">Spaß</span>
+            </div>
+            <div class="progress">
+              <div>
+                <span>Team-Fokus</span>
+                <strong>78%</strong>
+              </div>
+              <div class="bar">
+                <span></span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="members" class="section">
+      <section id="mission" class="section">
         <div class="section-header">
-          <h2>Mitgliedschaft</h2>
-          <p>Werde Teil der Bewegung und profitiere von sicheren, transparenten Strukturen.</p>
+          <h2>Story-Missionen mit Charakter</h2>
+          <p>
+            Triff schräge NPCs, löse Sonderfälle und schalte neue Viertel der Stadt frei. Jede Mission
+            bringt neue Fahrzeuge, Tools und Deko.
+          </p>
         </div>
-        <div class="membership">
-          <div class="membership-card">
-            <h3>Basis</h3>
-            <p class="price">25 € / Monat</p>
-            <ul>
-              <li>Standard-Kontingent</li>
-              <li>Monatlicher Club-Newsletter</li>
-              <li>Einladung zu Info-Events</li>
-            </ul>
-            <button class="button secondary">Anfrage senden</button>
+        <div class="story-grid">
+          <div class="story-card">
+            <h3>Die Neon-Nacht</h3>
+            <p>
+              Repariere den Licht-Wohnwagen einer DJ-Crew, bevor die Party startet.
+            </p>
+            <div class="story-tags">
+              <span>+2 Tools</span>
+              <span>+1 Teammitglied</span>
+            </div>
           </div>
-          <div class="membership-card featured">
-            <div class="tag">Beliebt</div>
-            <h3>Community Plus</h3>
-            <p class="price">45 € / Monat</p>
-            <ul>
-              <li>Erweitertes Kontingent</li>
-              <li>VIP-Workshopzugang</li>
-              <li>Persönliche Beratung</li>
-            </ul>
-            <button class="button primary">Jetzt anmelden</button>
+          <div class="story-card">
+            <h3>Der Wüsten-Express</h3>
+            <p>
+              Kühlsysteme, Staubfilter und Offroad-Reifen für die längste Lieferung des Jahres.
+            </p>
+            <div class="story-tags">
+              <span>+3 Fahrzeuge</span>
+              <span>Bonuslack</span>
+            </div>
           </div>
-          <div class="membership-card">
-            <h3>Fördermitglied</h3>
-            <p class="price">70 € / Monat</p>
-            <ul>
-              <li>Limitierte Sondereditionen</li>
-              <li>Co-Creation im Anbau</li>
-              <li>Exklusive Community-Events</li>
-            </ul>
-            <button class="button secondary">Interesse anmelden</button>
+          <div class="story-card">
+            <h3>Mini-Meisterschaft</h3>
+            <p>
+              Baue kichernde Karts für ein Kinderrennen und sichere dir die Pokale.
+            </p>
+            <div class="story-tags">
+              <span>+Fanbase</span>
+              <span>+Deko</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="kontakt" class="section alt">
-        <div class="contact">
-          <div>
-            <h2>Kontakt & Standort</h2>
-            <p>
-              Du hast Fragen? Unser Team beantwortet sie gerne. Besuche uns in unserem Clubhaus oder melde
-              dich online.
-            </p>
-            <div class="contact-info">
-              <p><strong>Adresse:</strong> Lindenstraße 22, 10115 Berlin</p>
-              <p><strong>Email:</strong> kontakt@gruenkreis.club</p>
-              <p><strong>Telefon:</strong> +49 30 1234 5678</p>
-            </div>
-          </div>
-          <form class="contact-form">
-            <label>
-              Name
-              <input type="text" placeholder="Dein Name" />
-            </label>
-            <label>
-              Email
-              <input type="email" placeholder="deine@email.de" />
-            </label>
-            <label>
-              Nachricht
-              <textarea rows="4" placeholder="Wie können wir helfen?"></textarea>
-            </label>
-            <button type="submit" class="button primary">Nachricht senden</button>
-          </form>
+      <section id="upgrades" class="section alt">
+        <div class="section-header">
+          <h2>Upgrades & Gestaltung</h2>
+          <p>
+            Sammle Münzen, baue neue Räume und dekoriere deine Werkstatt im Cartoon-Style.
+          </p>
+        </div>
+        <div class="upgrade-grid">
+          <article class="upgrade-card">
+            <h3>Werkzeug-Turm</h3>
+            <p>Mehr Slots für Spezialwerkzeuge und schnellere Reparaturzeiten.</p>
+          </article>
+          <article class="upgrade-card">
+            <h3>Folien-Studio</h3>
+            <p>Skins mit Glitzer, Streifen und verrückten Mustern freischalten.</p>
+          </article>
+          <article class="upgrade-card">
+            <h3>Chill-Lounge</h3>
+            <p>Motiviere dein Team mit Snacks, Musik und Arcade-Automaten.</p>
+          </article>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div>
-        <strong>Grünkreis Cannabis Club</strong>
-        <p>Gemeinschaftlich. Transparent. Nachhaltig.</p>
+        <strong>WrenchVille Garage Simulator</strong>
+        <p>Cartoon-Style, cozy Gameplay und jede Menge Schraubspaß.</p>
       </div>
       <div>
-        <p>Öffnungszeiten: Mo-Fr 14-20 Uhr</p>
-        <p>© 2024 Grünkreis Cannabis Club</p>
+        <p>Release: PC · Steam · Epic</p>
+        <p>© 2024 WrenchVille Studio</p>
       </div>
     </footer>
+
+    <script>
+      const parts = ["Motor", "Reifen", "Scheinwerfer", "Tür"];
+      const taskText = document.getElementById("taskText");
+      const hintText = document.getElementById("hintText");
+      const timeLeft = document.getElementById("timeLeft");
+      const score = document.getElementById("score");
+      const streak = document.getElementById("streak");
+      const startButton = document.getElementById("startGame");
+      const resetButton = document.getElementById("resetGame");
+      const partButtons = document.querySelectorAll(".stage-part");
+
+      let currentPart = null;
+      let timer = null;
+      let remaining = 45;
+      let points = 0;
+      let chain = 0;
+
+      const updateTask = () => {
+        currentPart = parts[Math.floor(Math.random() * parts.length)];
+        taskText.textContent = `Repariere: ${currentPart}`;
+        hintText.textContent = "Klicke auf die markierte Stelle am Auto.";
+      };
+
+      const updateStats = () => {
+        timeLeft.textContent = remaining;
+        score.textContent = points;
+        streak.textContent = chain;
+      };
+
+      const endGame = () => {
+        clearInterval(timer);
+        timer = null;
+        hintText.textContent = `Fertig! Du hast ${points} Reparaturen geschafft.`;
+        taskText.textContent = "Drücke „Start“, um nochmal zu spielen.";
+      };
+
+      const startGame = () => {
+        if (timer) {
+          return;
+        }
+        remaining = 45;
+        points = 0;
+        chain = 0;
+        updateStats();
+        updateTask();
+        timer = setInterval(() => {
+          remaining -= 1;
+          updateStats();
+          if (remaining <= 0) {
+            endGame();
+          }
+        }, 1000);
+      };
+
+      const resetGame = () => {
+        clearInterval(timer);
+        timer = null;
+        remaining = 45;
+        points = 0;
+        chain = 0;
+        updateStats();
+        taskText.textContent = "Drücke „Start“, um einen Auftrag zu bekommen.";
+        hintText.textContent = "Bereit für den ersten Auftrag?";
+      };
+
+      partButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!timer) {
+            hintText.textContent = "Starte das Spiel, um Reparaturen zu sammeln.";
+            return;
+          }
+          const selected = button.dataset.part;
+          if (selected === currentPart) {
+            points += 1;
+            chain += 1;
+            hintText.textContent = "Treffer! Nächste Reparatur.";
+            updateTask();
+          } else {
+            chain = 0;
+            hintText.textContent = `Nicht ganz! Gesucht: ${currentPart}.`;
+          }
+          updateStats();
+        });
+      });
+
+      startButton.addEventListener("click", startGame);
+      resetButton.addEventListener("click", resetGame);
+    </script>
   </body>
 </html>
