@@ -23,6 +23,17 @@ run_autoclicker.bat --gui
 
 Die Batch-Datei leitet alle Argumente an das Python-Skript weiter.
 
+### Eigenständige EXE erstellen (PyInstaller)
+
+Wenn du eine echte `.exe` willst, kannst du **PyInstaller** nutzen:
+
+```bash
+pip install pyinstaller
+pyinstaller --onefile --noconsole autoclicker.py
+```
+
+Die ausführbare Datei findest du danach im Ordner `dist/` als `autoclicker.exe`.
+
 ### Overlay (GUI)
 
 ```bash
